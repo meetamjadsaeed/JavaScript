@@ -1600,6 +1600,11 @@ class ReUsable {
             findMaxValue,
         };
     }
+
+    static testFunction() {
+        return "ReUsable Module is working"
+    }
+
 }
 
 module.exports = { ReUsable };

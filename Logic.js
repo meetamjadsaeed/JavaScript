@@ -14,7 +14,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
-var _ReUsable = require("./ReUsable.js");
+// var _ReUsable = require("./ReUsable.js");
+
+var { ReUsable } = require("./ReUsable.js");
 
 
 
@@ -28,28 +30,29 @@ var _ReUsable = require("./ReUsable.js");
 
 
 
-var generateVariations = function generateVariations(attributes) {
-    var _ReUsable$ReUsable;
-    var keys = Object.keys(attributes);
-    var attributeOptions = keys.map(function (key) {
-        return attributes[key];
-    });
-    var variations = (_ReUsable$ReUsable = _ReUsable.ReUsable).generateCartesianProduct.apply(_ReUsable$ReUsable, _toConsumableArray(attributeOptions)).map(function (combination, index) {
-        var variation = {};
-        combination.forEach(function (option, i) {
-            variation[keys[i]] = option;
-        });
-        return _defineProperty({}, "variation".concat(index + 1), Object.values(variation).join("-"));
-    });
-    return variations;
-};
-var attributes = {
-    color: ["red", "blue"],
-    size: ["small", "medium"],
-    measure: ["10cm", "20cm"]
-};
-var variations = generateVariations(attributes);
-console.log(variations);
+
+// var generateVariations = function generateVariations(attributes) {
+//     var _ReUsable$ReUsable;
+//     var keys = Object.keys(attributes);
+//     var attributeOptions = keys.map(function (key) {
+//         return attributes[key];
+//     });
+//     var variations = (_ReUsable$ReUsable = _ReUsable.ReUsable).generateCartesianProduct.apply(_ReUsable$ReUsable, _toConsumableArray(attributeOptions)).map(function (combination, index) {
+//         var variation = {};
+//         combination.forEach(function (option, i) {
+//             variation[keys[i]] = option;
+//         });
+//         return _defineProperty({}, "variation".concat(index + 1), Object.values(variation).join("-"));
+//     });
+//     return variations;
+// };
+// var attributes = {
+//     color: ["red", "blue"],
+//     size: ["small", "medium"],
+//     measure: ["10cm", "20cm"]
+// };
+// var variations = generateVariations(attributes);
+// console.log(variations);
 
 
 
@@ -79,6 +82,51 @@ console.log(variations);
 
 // const variations = generateVariations(attributes);
 // console.log(variations);
+
+
+
+// /**
+//  * Q: Write a function to find the maximum value in a binary tree.
+//  * 
+//  * first insert the value 
+//  * then find the minimum value
+//  * 
+//  */
+
+// const maximumValue = (valuesArray) => {
+
+//     const binaryTree = ReUsable.BinaryTree();
+//     for (let i = 0; i < valuesArray.length; i++) {
+//         binaryTree.insert(valuesArray[i]);
+//     }
+
+//     return binaryTree.findMaxValue();
+
+// }
+
+// console.log(maximumValue([5, 3, 8, 2, 4]));
+
+
+/**
+ * Q: Write a function to find the minimum value in a binary tree.
+ * 
+ * first insert the value 
+ * then find the minimum value
+ * 
+ */
+
+const minimumValue = (valuesArray) => {
+
+    const binaryTree = ReUsable.BinaryTree();
+    for (let i = 0; i < valuesArray.length; i++) {
+        binaryTree.insert(valuesArray[i]);
+    }
+
+    return binaryTree.findMinValue();
+
+}
+
+console.log(minimumValue([5, 3, 8, 2, 4]));
 
 
 
