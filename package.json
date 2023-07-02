@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "@babel/preset-env": "^7.22.5"
+  },
+  "scripts": {
+    "build": "babel Logic.js --out-file Logic.js --extensions .mjs"
+  }
+}
