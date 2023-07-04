@@ -138,6 +138,7 @@
      * binaryTree.update(8, 10);
      * console.log("In-order traversal after updating 8 to 10:");
      * binaryTree.inOrderTraversal(); // Output: 2, 4, 5, 10
+     * problemType = "sum" || "product"
      */
 
 
@@ -270,6 +271,38 @@ class ReUsable {
 
         return arr; // Return the sorted array
     }
+
+    static quickSelect(arr, low, high, k) {
+        const partition = (arr, low, high) => {
+            const pivot = arr[high];
+            let i = low - 1;
+
+            for (let j = low; j < high; j++) {
+                if (arr[j] < pivot) {
+                    i++;
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+            }
+
+            [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+            return i + 1;
+        };
+
+        if (low === high) {
+            return arr[low];
+        }
+
+        const pivotIndex = partition(arr, low, high);
+
+        if (k === pivotIndex) {
+            return arr[k];
+        } else if (k < pivotIndex) {
+            return this.quickSelect(arr, low, pivotIndex - 1, k);
+        } else {
+            return this.quickSelect(arr, pivotIndex + 1, high, k);
+        }
+    };
+
 
     static bubbleSort(arr) {
 
@@ -567,24 +600,45 @@ class ReUsable {
         return [];                          // Return an empty array if no pair is found
     }
 
-    static slidingWindow(arr, k) {
-        const result = [];
-        let windowSum = 0;
-        let windowStart = 0;
+    static slidingWindow(arr, windowSize, callback) {
+        const n = arr.length;
 
-        for (let windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-            windowSum += arr[windowEnd]; // Add the element at windowEnd to the current windowSum
-
-            if (windowEnd >= k - 1) {
-                result.push(windowSum); // Add the current windowSum to the result
-
-                windowSum -= arr[windowStart]; // Subtract the element at windowStart from the windowSum
-                windowStart++; // Slide the window to the right
-            }
+        // Handle invalid input
+        if (n === 0 || windowSize === 0 || windowSize > n) {
+            return;
         }
 
-        return result;
+        let start = 0;
+        let end = 0;
+
+        // Create a map to keep track of characters in the window
+        const windowMap = new Map();
+
+        // Slide the window until the end of the array
+        while (end < n) {
+            const char = arr[end];
+
+            // Update the windowMap
+            windowMap.set(char, (windowMap.get(char) || 0) + 1);
+
+            // Shrink the window until it satisfies the condition
+            while (windowMap.get(char) > 1) {
+                const leftChar = arr[start];
+                windowMap.set(leftChar, windowMap.get(leftChar) - 1);
+
+                start++;
+            }
+
+            // Call the callback function with the current window
+            callback(arr.slice(start, end + 1));
+
+            end++;
+        }
     }
+
+
+
+
 
     // singly linked list 
     static createLinkedList() {
@@ -1604,6 +1658,42 @@ class ReUsable {
     static testFunction() {
         return "ReUsable Module is working"
     }
+
+    // static kadaneAlgorithm(arr) {
+    //     let maxSoFar = arr[0];
+    //     let maxEndingHere = arr[0];
+
+    //     for (let i = 1; i < arr.length; i++) {
+    //         // Calculate the maximum sum ending at the current element
+    //         maxEndingHere = Math.max(arr[i], maxEndingHere + arr[i]);
+
+    //         // Update the maximum sum so far
+    //         maxSoFar = Math.max(maxSoFar, maxEndingHere);
+    //     }
+
+    //     return maxSoFar;
+    // }
+
+    static kadaneAlgorithm(arr, problemType) {
+        let maxSoFar = arr[0];
+        let maxEndingHere = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+            // Calculate the maximum sum or product ending at the current element
+            if (problemType === 'sum') {
+                maxEndingHere = Math.max(arr[i], maxEndingHere + arr[i]);
+            } else if (problemType === 'product') {
+                maxEndingHere = Math.max(arr[i], maxEndingHere * arr[i]);
+            }
+
+            // Update the maximum sum or product so far
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+
+        return maxSoFar;
+    }
+
+
 
 }
 

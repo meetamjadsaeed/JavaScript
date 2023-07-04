@@ -85,57 +85,60 @@ var { ReUsable } = require("./ReUsable.js");
 
 
 
+
+
 // /**
-//  * Q: Write a function to find the maximum value in a binary tree.
-//  * 
-//  * first insert the value 
-//  * then find the minimum value
-//  * 
+//  * QUESTION OF DSA planning LinkedIn Doc
 //  */
 
-// const maximumValue = (valuesArray) => {
+// /**
+//  * Q:01
+//  */
 
-//     const binaryTree = ReUsable.BinaryTree();
-//     for (let i = 0; i < valuesArray.length; i++) {
-//         binaryTree.insert(valuesArray[i]);
+// const reverseInput = (input) => {
+//     const stack = ReUsable.createStack();
+//     const reversed = [];
+
+
+//     for (let i = 0; i < input.length; i++) {
+//         stack.push(input[i]);
 //     }
 
-//     return binaryTree.findMaxValue();
 
+
+//     while (!stack.isEmpty()) {
+//         reversed.push(stack.pop());
+//     }
+
+//     return reversed;
 // }
 
-// console.log(maximumValue([5, 3, 8, 2, 4]));
+// console.log(reverseInput([1, 2, 3, 5, 5]));
+
+/**
+ * Q:02
+ */
+
+
+
+// const kthSmallestElement = (input, k) => {
+//     return ReUsable.quickSelect(input, 0, input.length - 1, k - 1);
+// }
+
+// console.log(kthSmallestElement([7, 10, 4, 3, 20, 15], 3));
 
 
 /**
- * Q: Write a function to find the minimum value in a binary tree.
- * 
- * first insert the value 
- * then find the minimum value
- * 
+ * Q:03
  */
 
-const minimumValue = (valuesArray) => {
+const maxSubarraySum = (arr) => {
 
-    const binaryTree = ReUsable.BinaryTree();
-    for (let i = 0; i < valuesArray.length; i++) {
-        binaryTree.insert(valuesArray[i]);
-    }
+    const maxSum = ReUsable.kadaneAlgorithm(arr, "product")
 
-    return binaryTree.findMinValue();
+    return maxSum;
+
 
 }
 
-console.log(minimumValue([5, 3, 8, 2, 4]));
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(maxSubarraySum([1, -3, 2, 1, -1]));
