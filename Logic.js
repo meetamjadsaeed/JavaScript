@@ -132,13 +132,112 @@ var { ReUsable } = require("./ReUsable.js");
  * Q:03
  */
 
-const maxSubarraySum = (arr) => {
+// const maxSubarraySum = (arr) => {
 
-    const maxSum = ReUsable.kadaneAlgorithm(arr, "product")
+//     const maxSum = ReUsable.kadaneAlgorithm(arr, "product")
 
-    return maxSum;
+//     return maxSum;
 
 
-}
+// }
 
-console.log(maxSubarraySum([1, -3, 2, 1, -1]));
+// console.log(maxSubarraySum([1, -3, 2, 1, -1]));
+
+
+
+
+
+
+
+
+/***
+ *
+ *
+ *
+ *
+ * ARRAY PROBLEMS
+ *
+ *
+ *
+ *
+ */
+
+
+
+// /**
+//  Q:1 Reverse the array (nife approach).
+//  use build im method reverse pf javascript / reverse the lements of array
+//  */
+
+// /**
+// Q:1 Reverse the array (optimized approach approach).
+// use stack
+// push the all elements
+// pop the the elements untill stack is empty because stack follows LIFO so you will get the reversed array
+// */
+
+// const reverseArray = (array) => {
+//     const stack = ReUsable.createStack();
+//     const result = []; //
+//     for (let i = 0; i < array.length; i++) {
+//         stack.push(array[i]);
+//     }
+
+//     while (!(stack.isEmpty())) {
+//         result.push(stack.pop());
+
+//     }
+//     return result
+// }
+
+// console.log(reverseArray([1, 2, 3, 5, 6, 7]))
+
+
+
+/**
+ Q:Maximum and Minimum in an array.
+ (nife approach)
+ sort the array in ascending order
+ return first elemnt as minimum
+ return last elemnt as maximum
+
+
+
+ optimized approach
+another approach is that pick first element as min element
+itertate the whole array
+check if current element is less than selected min element
+ reset the min
+ last, return min
+
+ do same for max
+
+ optimized approach
+ if we need to implement data structure then we can use heap
+
+ use min-heap for min element
+ use max heap for max element
+
+
+
+*/
+
+// const minElementFromArray = (array) => {
+//     const heap = ReUsable.createMinHeap();
+//     array.forEach((element) => heap.insert(element));
+//     return heap.extractMin();
+
+// }
+// console.log(minElementFromArray([1, 2, 5, 8, 32, 6, 7]))
+
+
+// const maxElementFromArray = (array) => {
+
+//     const heap = ReUsable.createMaxHeap();
+//     array.forEach((element) => heap.insert(element));
+//     return heap.extractMax();
+// }
+// console.log(maxElementFromArray([1, 2, 5, 8, 32, 6, 7]))
+
+
+

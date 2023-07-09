@@ -1693,6 +1693,19 @@ class ReUsable {
         return maxSoFar;
     }
 
+    static removeDuplicatesById(array) {
+        const uniqueIds = {};
+        return array.filter(obj => {
+            if (!uniqueIds[obj.id]) {
+                uniqueIds[obj.id] = true;
+                return true;
+            }
+            return false;
+        });
+    }
+
+
+
 
 
 }
