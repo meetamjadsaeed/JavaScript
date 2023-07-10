@@ -241,3 +241,22 @@ check if current element is less than selected min element
 
 
 
+// /**
+//  * Kth Max and Min in an array
+//  * 
+//  * nife approach 
+//  * sort the elements 
+//  * find the element with index from end if goal is to find the max element and from start if goal is to find the min element
+//  * 
+//  * oprimize approach
+//  * use QuickSelect
+//  * 
+//  * 
+//  */
+
+// const kthMinElement = (array, index) => {
+//     const quickSelect = ReUsable.quickSelect(array, 0, array.length - 1, index);
+
+//     return quickSelect;
+// }
+// console.log(kthMinElement([1, 4, 7, 9, 3, 2, 46, 78, 8], 6))
