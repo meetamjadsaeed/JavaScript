@@ -185,19 +185,37 @@ class ReUsable {
         return n * factorial(n - 1);
     };
 
+    // static findSubsets(array) {
+    //     var subsets = [[]]; // Initialize with an empty subset
+    //     for (var i = 0; i < array.length; i++) {
+    //         var currentElement = array[i];
+    //         var subsetsLength = subsets.length;
+    //         for (var j = 0; j < subsetsLength; j++) {
+    //             var subset = subsets[j];
+    //             subsets.push([].concat(_toConsumableArray(subset), [currentElement])); // Add a new subset with the current element
+    //         }
+    //     }
+
+    //     return subsets;
+    // };
+
     static findSubsets(array) {
-        var subsets = [[]]; // Initialize with an empty subset
-        for (var i = 0; i < array.length; i++) {
-            var currentElement = array[i];
-            var subsetsLength = subsets.length;
-            for (var j = 0; j < subsetsLength; j++) {
-                var subset = subsets[j];
-                subsets.push([].concat(_toConsumableArray(subset), [currentElement])); // Add a new subset with the current element
+        const subsets = [[]]; // Start with an empty subset
+
+        // Iterate through each element in the array
+        for (let i = 0; i < array.length; i++) {
+            const currentSubsets = subsets.length;
+
+            // Create new subsets by adding the current element
+            for (let j = 0; j < currentSubsets; j++) {
+                const subset = subsets[j].slice(); // Create a shallow copy of the subset
+                subset.push(array[i]); // Add the current element to the subset
+                subsets.push(subset); // Add the new subset to the list
             }
         }
 
         return subsets;
-    };
+    }
 
     static linearSearch(array, target) {
 
@@ -772,6 +790,19 @@ class ReUsable {
     }
 
     static createDoublyLinkedList() {
+        // * doubly linked list
+        // *      const doublyLinkedList = createDoublyLinkedList();
+        // *      doublyLinkedList.addToHead(3);
+        // *      doublyLinkedList.addToHead(2);
+        // *      doublyLinkedList.addToTail(4);
+        // *      console.log(doublyLinkedList.size()); // Output: 3
+        // *      console.log(doublyLinkedList.search(2)); // Output: true
+        // *      console.log(doublyLinkedList.removeFromTail()); // Output: 4
+        // *      console.log(doublyLinkedList.removeFromHead()); // Output: 2
+        // *      console.log(doublyLinkedList.isEmpty()); // Output: false
+
+
+
         function DoublyListNode(value) {
             this.value = value;
             this.prev = null;
@@ -1193,6 +1224,95 @@ class ReUsable {
             size: size,
         };
     }
+
+    static createMinMaxHeap() {
+        //         // Example usage:
+        // const heap = createMinMaxHeap();
+        // heap.insert(5);
+        // heap.insert(3);
+        // heap.insert(8);
+        // console.log(heap.getMin()); // Output: 3
+        // console.log(heap.getMax()); // Output: 8
+        // heap.remove(3);
+        // console.log(heap.getMin()); // Output: 5
+        // console.log(heap.getMax()); // Output: 8
+
+
+
+        const heap = [];
+
+        function getMin() {
+            if (heap.length === 0)
+                return Infinity;
+            return heap[0];
+        }
+
+        function getMax() {
+            if (heap.length === 0)
+                return -Infinity;
+            return heap[heap.length - 1];
+        }
+
+        function insert(val) {
+            heap.push(val);
+            bubbleUp(heap.length - 1);
+        }
+
+        function remove(val) {
+            const index = heap.indexOf(val);
+            if (index === -1)
+                return;
+
+            swap(index, heap.length - 1);
+            heap.pop();
+            bubbleDown(index);
+        }
+
+        function bubbleUp(index) {
+            while (index > 0) {
+                const parentIndex = Math.floor((index - 1) / 2);
+                if (heap[index] < heap[parentIndex]) {
+                    swap(index, parentIndex);
+                    index = parentIndex;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        function bubbleDown(index) {
+            while (true) {
+                const leftChildIndex = 2 * index + 1;
+                const rightChildIndex = 2 * index + 2;
+                let smallest = index;
+
+                if (leftChildIndex < heap.length && heap[leftChildIndex] < heap[smallest])
+                    smallest = leftChildIndex;
+
+                if (rightChildIndex < heap.length && heap[rightChildIndex] < heap[smallest])
+                    smallest = rightChildIndex;
+
+                if (smallest !== index) {
+                    swap(index, smallest);
+                    index = smallest;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        function swap(i, j) {
+            [heap[i], heap[j]] = [heap[j], heap[i]];
+        }
+
+        return {
+            getMin,
+            getMax,
+            insert,
+            remove
+        };
+    }
+
 
     static dijkstra(graph, startNode) {
         const distances = {}; // Stores the shortest distances from the start node to each node
@@ -1703,6 +1823,76 @@ class ReUsable {
             return false;
         });
     }
+
+    static dutchNationalFlag(array) {
+
+        /**
+         * array = [0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1]
+         * 
+         */
+
+
+        let low = 0;
+        let mid = 0;
+        let high = array.length - 1;
+
+        while (mid <= high) {
+            switch (array[mid]) {
+                case 0:
+                    swap(array, low, mid);
+                    low++;
+                    mid++;
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                case 2:
+                    swap(array, mid, high);
+                    high--;
+                    break;
+            }
+        }
+
+        function swap(array, i, j) {
+            const temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        };
+
+        return array;
+    };
+
+    static checkArrayOrder(arr) {
+        /**
+         * 
+         * arr = [1,2,3,,67,8,7]
+         * 
+         */
+
+        let isAscending = true;
+        let isDescending = true;
+
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
+                isAscending = false; // If any element is smaller than its previous element, the array is not in ascending order
+            }
+            if (arr[i] > arr[i - 1]) {
+                isDescending = false; // If any element is greater than its previous element, the array is not in descending order
+            }
+        }
+
+        if (isAscending) {
+            return 'Ascending';
+        } else if (isDescending) {
+            return 'Descending';
+        } else {
+            return 'Neither ascending nor descending';
+        }
+    }
+
+
+
+
 
 
 
