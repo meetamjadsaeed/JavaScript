@@ -986,67 +986,67 @@ check if current element is less than selected min element
 
 
 /**
- * 
+ *
  * Min swaps required bring elements less equal to K together.
- * 
- * 
+ *
+ *
  * Naive Approach: A simple solution is to first count all elements less than or equal to k(say ‘good’). Now traverse for every sub-array and swap those elements whose value is greater than k. The time complexity of this approach is O(n2)
- * 
+ *
  */
 
 
 
 /**
- * 
+ *
  * Chocolate Distribution Problem
- * 
- * psuedo code 
- * 
+ *
+ * psuedo code
+ *
  * The idea is to generate all subsets of size m of arr[0..n-1]. For every subset, find the difference between the maximum and minimum elements in it. Finally, return the minimum difference.
- * 
- * 
- * 
+ *
+ *
+ *
  */
 
 
 // Function to generate all subsets of size m
-function generateSubsetsOfSizeM(arr, m) {
-    const subsets = [];
-    generateSubsetsHelper(arr, m, 0, [], subsets);
-    return subsets;
-}
+// function generateSubsetsOfSizeM(arr, m) {
+//     const subsets = [];
+//     generateSubsetsHelper(arr, m, 0, [], subsets);
+//     return subsets;
+// }
 
-function generateSubsetsHelper(arr, m, start, subset, subsets) {
-    if (subset.length === m) {
-        subsets.push(subset.slice()); // Add a copy of the subset to subsets
-        return;
-    }
+// function generateSubsetsHelper(arr, m, start, subset, subsets) {
+//     if (subset.length === m) {
+//         subsets.push(subset.slice()); // Add a copy of the subset to subsets
+//         return;
+//     }
 
-    for (let i = start; i < arr.length; i++) {
-        subset.push(arr[i]);
-        generateSubsetsHelper(arr, m, i + 1, subset, subsets);
-        subset.pop();
-    }
-}
+//     for (let i = start; i < arr.length; i++) {
+//         subset.push(arr[i]);
+//         generateSubsetsHelper(arr, m, i + 1, subset, subsets);
+//         subset.pop();
+//     }
+// }
 
-// Naive approach for Chocolate Distribution Problem
-function minDifference(arr, m) {
-    const subsets = generateSubsetsOfSizeM(arr, m);
-    let minDiff = Infinity;
+// // Naive approach for Chocolate Distribution Problem
+// function minDifference(arr, m) {
+//     const subsets = generateSubsetsOfSizeM(arr, m);
+//     let minDiff = Infinity;
 
-    for (let subset of subsets) {
-        const diff = Math.max(...subset) - Math.min(...subset);
-        minDiff = Math.min(minDiff, diff);
-    }
+//     for (let subset of subsets) {
+//         const diff = Math.max(...subset) - Math.min(...subset);
+//         minDiff = Math.min(minDiff, diff);
+//     }
 
-    return minDiff;
-}
+//     return minDiff;
+// }
 
-// Example usage
-const arr = [7, 3, 2, 4, 9, 12, 56];
-const m = 3;
-const result = minDifference(arr, m);
-console.log('Minimum difference:', result);
+// // Example usage
+// const arr = [7, 3, 2, 4, 9, 12, 56];
+// const m = 3;
+// const result = minDifference(arr, m);
+// console.log('Minimum difference:', result);
 
 
 // The generateSubsetsOfSizeM function generates all subsets of size m using a recursive helper function generateSubsetsHelper. It takes an array arr, the desired subset size m, a start index to track the current element, a subset array to store the current subset, and the subsets array to store all generated subsets.
@@ -1054,3 +1054,795 @@ console.log('Minimum difference:', result);
 // The minDifference function implements the naive approach for the Chocolate Distribution Problem. It uses the generateSubsetsOfSizeM function to generate all subsets of size m from the given array arr. It then calculates the difference between the maximum and minimum elements for each subset and keeps track of the minimum difference found.
 
 // In the example usage, it calculates the minimum difference for the array [3, 4, 1, 9, 56, 7, 9, 12] with a subset size of 5 and logs the result to the console.
+
+
+
+/**
+ * Find Duplicate characters in a string.
+ *
+ * pseudo code
+ *
+ * convert string to array of characters
+ *
+ * then add array in key pair object
+ *
+ * iterate the object if value is more than 1 than found duplicate
+ */
+
+
+// const duplicateCharacters = (str) => {
+//     const arrayOfCharacters = str.split("");
+//     const trackCharacters = {};
+//     const duplicates = [];
+//     for (let i = 0; i < arrayOfCharacters.length; i++) {
+//         if (trackCharacters[arrayOfCharacters[i]]) {
+//             trackCharacters[arrayOfCharacters[i]] += 1;
+//         }
+//         else {
+//             trackCharacters[arrayOfCharacters[i]] = 1;
+//         }
+//     }
+
+//     for (let i = 0; i < arrayOfCharacters.length; i++) {
+//         if (trackCharacters[arrayOfCharacters[i]] > 1) {
+//             duplicates.push(arrayOfCharacters[i]);
+//         }
+
+//     }
+
+
+//     return [...new Set(duplicates)]
+// }
+
+// console.log(duplicateCharacters("firstt nnamee ss"))
+
+
+
+
+/**
+ *
+ * Split the Binary string into two substring with equal 0’s and 1’s
+ *
+ * declare variable for 0's
+ * declare variable for 1's
+ * declare variable for count
+ *
+ * iterate the string
+ *  if it contains 0 then increment the variable 0's
+ *  if it contains 1 then increment the variable 1's
+ *
+ * then check if variable 0 is equal to variable 1 then increment the variable count
+ *
+ */
+
+
+
+// const maxSubStr = (str) => {
+//     let count0 = 0;
+//     let count1 = 0;
+//     let count = 0;
+
+//     for (let index = 0; index < str.length; index++) {
+
+//         if (str[index] == 0) {
+//             count0++;
+//         }
+//         else {
+//             count1++;
+//         }
+
+//         if (count0 == count1) {
+//             count++;
+//         }
+
+//     }
+
+//     return count;
+
+// }
+
+// console.log(maxSubStr("0000000000"))
+
+
+
+/**
+ *
+ * Word Wrap Problem.
+ *
+ * split the words as per given widhth(characters)
+ *
+ * count++ on every iteration if count === width then break line and reset the count
+ * repeat the process on whole senetence
+ *
+ */
+
+// const solveWordWrapUtil = (sentence, width) => {
+//     let count = 0;
+//     let result = [];
+
+//     for (let index = 0; index < sentence.length; index++) {
+//         count++;
+
+//         if (count === width) {
+//             result.push(sentence[index] + ' \n');
+//             count = 0;
+//         } else {
+//             result.push(sentence[index]);
+//         }
+//     }
+
+//     return result.join("");
+// }
+
+// console.log(solveWordWrapUtil("Geeks for Geeks presents word wrap problem", 15));
+
+
+/**
+ *
+ * EDIT Distance.
+ *
+ *
+ * iterate one string and check if both have the the same character then push that character in array
+ * remove those characters from str1 then check the length of str and return length
+ *
+ */
+
+
+// const levenshteinDistance = (str1, str2) => {
+//     const m = str1.length;
+//     const n = str2.length;
+
+//     // Create a 2D array to store the distances
+//     const dp = Array(m + 1)
+//         .fill(null)
+//         .map(() => Array(n + 1).fill(0));
+
+//     // Initialize the first row and column of the array
+//     for (let i = 0; i <= m; i++) {
+//         dp[i][0] = i;
+//     }
+
+//     for (let j = 0; j <= n; j++) {
+//         dp[0][j] = j;
+//     }
+
+//     // Fill in the rest of the array
+//     for (let i = 1; i <= m; i++) {
+//         for (let j = 1; j <= n; j++) {
+//             if (str1[i - 1] === str2[j - 1]) {
+//                 dp[i][j] = dp[i - 1][j - 1];
+//             } else {
+//                 dp[i][j] = Math.min(
+//                     dp[i - 1][j] + 1, // deletion
+//                     dp[i][j - 1] + 1, // insertion
+//                     dp[i - 1][j - 1] + 1 // substitution
+//                 );
+//             }
+//         }
+//     }
+
+//     return dp[m][n];
+// };
+
+// const str1 = "sunday";
+// const str2 = "saturday";
+// const distance = levenshteinDistance(str1, str2);
+// console.log(distance);
+
+
+
+
+/**
+ * find next greater number with same set of digits
+ *
+ * convert string to array of numbers
+ * traverse the array and keep traversing till you find a digit which is smaller than the previously traversed digit.
+ * save the digit in variable
+ * remove remaining part
+ * sort remaning part
+ * find min elemnt from remaning part
+ * replace stored digit with min
+ * merge both parts
+ *
+ *
+ *
+ */
+
+
+// const findNext = (digits) => {
+//     const digitsToArray = digits.split("");
+
+//     let prev = digitsToArray[digitsToArray.length - 1];
+//     let current;
+//     let next;
+
+//     for (let index = digitsToArray.length - 1; index >= 0; index--) {
+//         current = digitsToArray[index];
+
+//         if (current < prev) {
+//             next = current;
+
+//             const remainingPart = digitsToArray.slice(index + 1);
+//             const sortRemainingPart = remainingPart.sort((a, b) => a - b);
+//             digitsToArray[index] = sortRemainingPart[0];
+
+//             sortRemainingPart[0] = next;
+
+//             return (
+//                 digitsToArray.slice(0, index + 1).concat(sortRemainingPart).join("")
+//             );
+//         } else {
+//             prev = current;
+//         }
+//     }
+
+//     return null; // Return null if no digit is smaller than its next digit
+// };
+
+// console.log(findNext("534976"));
+
+
+
+/**
+ *
+ * Balanced Parenthesis problem.
+ *
+ *
+ * push the all bracket in stack
+ * remove bracket from stack and comapre if they are not same then return false els etrue
+ *
+ *
+ */
+
+
+
+// const areBracketsBalanced = (brackets) => {
+//     const stack = [];
+//     const bracketPairs = {
+//         "{": "}",
+//         "(": ")",
+//         "[": "]",
+//     }
+
+//     for (let index = 0; index < brackets.length; index++) {
+//         const currentBracket = brackets[index];
+
+//         if (bracketPairs[currentBracket]) {
+//             // If it's an opening bracket, push it to the stack
+//             stack.push(currentBracket);
+//         } else {
+//             // If it's a closing bracket, check if it matches the last opening bracket
+//             const lastOpeningBracket = stack.pop();
+//             if (currentBracket !== bracketPairs[lastOpeningBracket]) {
+//                 // If it doesn't match, brackets are not balanced
+//                 return false;
+//             }
+//         }
+//     }
+
+//     // If the stack is empty, all brackets were matched, and they are balanced
+//     return stack.length === 0;
+// }
+
+// console.log(areBracketsBalanced("(){}")); // Output: true
+
+
+
+/**
+ *
+ * Word Break Problem | DP-32
+ *
+ * create object of ditionary and set the prediefined values
+ *
+ * simpley use recursion and check on the basis of prefix and suffix
+ *
+ */
+
+
+// const wordBreak = (str) => {
+//     // base case
+//     if (str.length === 0)
+//         return true;
+
+//     const dictionary = new Set();
+
+//     const tempDictionary = ["i", "like", "sam", "sung", "samsung", "mobile", "ice", "cream", "man", "go", "mango"];
+
+//     tempDictionary.forEach(element => {
+//         dictionary.add(element);
+//     });
+
+//     for (let index = 1; index <= str.length; index++) {
+//         if (dictionary.has(str.substring(0, index)) && wordBreak(str.substring(index, str.length))) {
+//             return true;
+//         }
+//     }
+
+//     return false;
+// }
+
+// console.log(wordBreak("ilike"));
+
+
+
+/***
+ * Recursively remove all adjacent duplicates
+ *
+ * use recursion
+ *
+ *
+ * ieterate the string
+ * on each iteration check if current second character is equal to first character
+ *      if yes then skip that iteration
+ *          make boolean to true
+ *      else
+ *          add that character to result
+ *
+ * we need to apply on whole string
+ *
+ * so out of iteration check if boolean value is true then pass the output again to function else return output
+ *
+ */
+
+
+// const removeAdjacentDuplicates = (str) => {
+//     let output = ""
+//     let isRem = false;
+
+//     for (let index = 0; index < str.length; index++) {
+//         if (str[index] === str[index + 1]) {
+//             isRem = true;
+//             index++;
+//         }
+//         else {
+//             output += str[index]
+//         }
+
+//     }
+
+//     if (isRem) {
+//         return removeAdjacentDuplicates(output)
+//     }
+//     else {
+//         return output
+//     }
+
+
+// }
+// console.log(removeAdjacentDuplicates("geeksforgeeg"))
+
+
+/***
+ * maximum subsequence sum such that no three are consecutive
+ *
+ * Our goal is to the sum of all numbers but after numbers cant be sum in order of 3 for example there are numbers 1 2 3 4 so we need to add 1+2+4 not 3 because 3 is has third order
+ *
+ * check if array length is 0 the return 0
+ * if length is 1 then return array[0]
+ * if length is 2 then return array[0]+array[1]
+ *
+ * else
+ *
+ *  initialize initial current sum  = arr[0] + arr[1] + arr[2]; // Sum of the first three elements
+ *  initialize initial prevousSum = array[0]
+ * initialize initial twoElementsBackSum = array[0]+array[1]
+ *
+ * iterate the whole array
+ *      find maximum from prevousSum and twoElementsBackSum
+ *      exchange values
+ *              twoElementsBackSum = prevousSum
+ *              prevousSum = sum
+ *              sum =  maximum
+ *
+ * return sum
+ */
+
+
+
+// const maxSumWO3Consec = (array) => {
+//     if (array.length === 0) return 0;
+//     if (array.length === 1) return array[0];
+//     if (array.length === 2) return array[0] + array[1];
+
+//     let sum = array[0] + array[1] + array[2]; // Sum of the first three elements
+//     let prevSum = array[0]; // Sum of the previous two elements
+//     let twoElementsBackSum = array[1] + array[0]; // Sum of two elements back
+
+//     for (let index = 3; index < array.length; index++) {
+//         // Calculate the maximum sum ending at index i
+//         let currentSum = Math.max(prevSum, twoElementsBackSum) + array[index];
+
+//         twoElementsBackSum = prevSum;
+//         prevSum = sum;
+//         sum = currentSum;
+//     }
+
+//     // The maximum subsequence sum will be the maximum value between sum and prevSum
+//     return Math.max(sum, prevSum);
+// };
+
+// // Example usage:
+// console.log(maxSumWO3Consec([3, 2, 7, 10])); // Output: 13 (maximum subsequence sum: 3 + 7 + 3)
+
+
+
+/****
+ * maximum Length Chain of Pairs.
+ *
+ * initilize ans and prev value  = 0
+ *
+ * iterate the array
+ *      check if current is greater than prev
+ *          increment the sum
+ *              exchange
+ *
+ *
+ *
+ */
+
+// function findLongestChain(pairs) {
+//   // Sort the pairs based on the first element
+//   pairs.sort((a, b) => a[0] - b[0]);
+
+//   const n = pairs.length;
+//   const dp = new Array(n).fill(1);
+
+//   for (let i = 1; i < n; i++) {
+//     for (let j = 0; j < i; j++) {
+//       if (pairs[j][1] < pairs[i][0]) {
+//         dp[i] = Math.max(dp[i], dp[j] + 1);
+//       }
+//     }
+//   }
+
+//   return Math.max(...dp);
+// }
+
+// // Example usage:
+// const pairs = [[1, 2], [2, 3], [3, 4]];
+// console.log(findLongestChain(pairs)); // Output: 2
+
+
+/****
+ *
+ * Maximum sum of pairs with specific difference.
+ *
+ * first sort the array in ascending order
+ * initialize the left to start from left
+ * initilize the right to start from right
+ * initilially both left and right will be start from 0
+ * initilize the maxSum to track the max sum
+ * iterate the sorted array untill right is less than total sorted array lenth
+ *      calculate the difference between the left and right
+ *      Calculate the difference diff = nums[right] - nums[left].
+If diff == k, you found a valid pair. Update maxSum with the sum of the current pair (nums[right] + nums[left]).
+If diff < k, move right pointer one step to the right to potentially find a larger difference.
+If diff > k, move left pointer one step to the right to potentially find a smaller difference.
+If left and right are equal, move right one step to the right to avoid considering the same element as both a and b.
+Return maxSum as the result.
+ *
+ */
+
+// const maxSumPairWithDifferenceLessThanK = (array, k) => {
+
+//     const sorted = array.sort((a, b) => a - b);
+
+//     let left = 0;
+//     let right = 0;
+//     let maxSum = 0;
+
+//     for (let index = 0; right < sorted.length; index++) {
+//         let diff = sorted[right] - sorted[left];
+
+//         if (diff == k) {
+//             maxSum = Math.max(maxSum, sorted[right] + sorted[left]);
+//             left++;
+//             right++;
+//         }
+
+//         if (diff < k) {
+//             right++;
+//         }
+
+//         if (diff > k) {
+//             left++;
+//         }
+
+//         if (left == right) {
+//             right++;
+//         }
+
+//     }
+
+//     return maxSum;
+
+// }
+
+// console.log(maxSumPairWithDifferenceLessThanK([1, 3, 5, 7, 9], 2))
+
+
+/***
+ *
+ * Count number of ways to reach a given score in a game
+ *
+ * Input: n = 20
+ * Output: 4
+ * Explanation: There are following 4 ways to reach 20: (10, 10), (5, 5, 10), (5, 5, 5, 5), (3, 3, 3, 3, 3, 5)
+ *
+ *
+ * iterate the loop untill target
+ *  initilialize the result array
+ *  initliaze the current pair array ( which will lead to sum of k)
+ *  in loop check if previous elemt
+ *
+ */
+
+
+
+// const countWaysToReachScore = (target) => {
+//     let result = [];
+
+//     for (let i = 0; i < target; i++) {
+//         for (let j = i; i < target; j++) {
+//             if (i + j === target) {
+//                 result.push(i, j)
+//             }
+
+//         }
+
+//     }
+
+//     return target
+
+// }
+
+// console.log(countWaysToReachScore(20))
+
+
+/****
+ * check if two string are anagram without using sorting
+ *
+ *
+ * psuedo code
+ *
+ * first check if length is not equal of both strings the return false
+ *      first track the count of frist string with key pair
+ *      do same for string
+ *
+ *          then iterate the any string and compare if both string have same count then return true else false
+ *
+ */
+
+
+// const isAanagram = (s1, s2) => {
+//     if (s1.length !== s2.length) return false;
+
+//     let s1Stack = {};
+//     let s2Stack = {};
+
+//     for (let index = 0; index < s1.length; index++) {
+//         if (s1Stack[s1[index]] || s2Stack[s2[index]]) {
+//             s1Stack[s1[index]] += 1;
+//             s2Stack[s2[index]] += 1;
+
+//         }
+//         else {
+//             s1Stack[s1[index]] = 1;
+//             s2Stack[s2[index]] = 1;
+
+//         }
+
+//     }
+
+//     for (let index = 0; index < s1.length; index++) {
+//         if (s1Stack[s1[index]] !== s2Stack[s1[index]]) {
+//             return false;
+//         }
+
+//     }
+
+//     return true;
+
+
+// }
+
+
+// console.log(isAanagram("gram", "armm"))
+
+
+
+
+/****
+ *
+ * Count number of ways to reach a given score in a game
+ *
+ * create a array with name table with lenth of orginal array
+ *
+ *
+ *
+ */
+
+// const countWaysToReachScore = (scores, targetScore) => {
+//     // const table = new Array(targetScore + 1).fill(0);
+
+//     // // Base case (If given value is 0)
+//     // table[0] = 1;
+
+
+//     // scores.map((score, index) => {
+//     //     for (let i = score; i <= targetScore; i++)
+//     //         table[i] += table[i - score];
+
+//     // })
+
+//     // let currentNumber = 5;
+//     let second = 10;
+//     let way = 0;
+
+//     scores.map((score, index) => {
+//         let currentNumber = score;
+//         while (currentNumber != targetScore) {
+//             currentNumber++;
+
+//             if (currentNumber === targetScore) {
+//                 way++;
+//             }
+//         }
+
+//         for (let i = 0; i < scores.length; i++) {
+//             for (let j = 0; j < scores.length; j++) {
+
+//                 let sum = scores[i] + scores[j];
+//                 while (sum != targetScore) {
+
+//                     if (sum === targetScore) {
+//                         way++;
+//                     }
+//                 }
+
+//             }
+
+//         }
+
+//     })
+
+
+//     // while (second != targetScore) {
+//     //     second++;
+
+//     //     if (second === targetScore) {
+//     //         way++;
+//     //     }
+//     // }
+
+
+//     return way;
+
+
+//     // return table;
+// }
+
+// const targetScore = 20
+// const possibleScores = [5, 10]
+
+// console.log(countWaysToReachScore(possibleScores, targetScore))
+
+// for example if we have scores 5 10 
+
+// then add the 5 untill it reach to targetScore
+// then add the 10 untill it reach to targetScore
+// add 5+10 untill it reach to targetScore
+
+
+
+
+// const countWaysToReachScore = (scores, targetScore) => {
+//     let ways = 0;
+
+//     scores.forEach((score) => {
+//         if (score === targetScore) {
+//             ways++;
+//         } else if (score < targetScore) {
+//             ways += countWaysToReachScore(scores, targetScore - score);
+//         }
+//     });
+
+//     return ways;
+// };
+
+// const targetScore = 20;
+// const possibleScores = [3, 5, 10];
+
+// console.log(countWaysToReachScore(possibleScores, targetScore));
+
+
+
+
+/****
+ * Given a sequence of words, print all anagrams together
+ * 
+ * 
+ */
+
+
+// const isAnagram = (s1, s2) => {
+//     if (s1.length !== s2.length) return false;
+
+//     let s1Stack = {};
+//     let s2Stack = {};
+
+//     for (let index = 0; index < s1.length; index++) {
+//         s1Stack[s1[index]] = (s1Stack[s1[index]] || 0) + 1;
+//         s2Stack[s2[index]] = (s2Stack[s2[index]] || 0) + 1;
+//     }
+
+//     for (let index = 0; index < s1.length; index++) {
+//         if (s1Stack[s1[index]] !== s2Stack[s1[index]]) {
+//             return false;
+//         }
+//     }
+
+//     return true;
+// }
+
+// const checkAnagram = (arrayOfStrings) => {
+//     let anagrams = [];
+
+
+//     for (let i = 0; i < arrayOfStrings.length; i++) {
+//         for (let j = 0; j < arrayOfStrings.length; j++) {
+
+//             if (isAnagram(arrayOfStrings[i], arrayOfStrings[j])) {
+//                 anagrams.push(arrayOfStrings[i], arrayOfStrings[j]);
+//             }
+
+//         }
+
+//     }
+
+//     return [...new Set(anagrams)]
+// }
+
+// const strings = ["cat", "dog", "tac", "god", "act"];
+// console.log(checkAnagram(strings));
+
+
+/**
+ * 
+ * Implement a Phone Directory
+ * 
+ * 
+ * store words in array
+ * 
+ * iterate the array of words
+ *      match the query with prefix of the word if match then return that word else not 
+ * 
+ */
+
+
+const isMatch = (word, query) => {
+    const indexStart = word.indexOf(query[0]);
+    if (indexStart >= 0) {
+        const prefix = word.substring(indexStart, word.length);
+        return prefix.startsWith(query) ? word : "";
+    }
+    return "";
+};
+
+const searchFor = (dictionary, query) => {
+    const result = [];
+    for (let index = 0; index < dictionary.length; index++) {
+        const foundWord = isMatch(dictionary[index], query);
+        if (foundWord !== "") {
+            result.push(foundWord);
+        }
+    }
+    return result;
+};
+
+const contacts = ["gforgeeks", "geeksquiz"];
+const query = "quiz";
+
+console.log(searchFor(contacts, query));
+
+// console.log(isMatch("geeksquiz", query))
