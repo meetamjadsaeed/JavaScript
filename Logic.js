@@ -1760,8 +1760,8 @@ Return maxSum as the result.
 
 /****
  * Given a sequence of words, print all anagrams together
- * 
- * 
+ *
+ *
  */
 
 
@@ -1808,41 +1808,86 @@ Return maxSum as the result.
 
 
 /**
- * 
+ *
  * Implement a Phone Directory
- * 
- * 
+ *
+ *
  * store words in array
- * 
+ *
  * iterate the array of words
- *      match the query with prefix of the word if match then return that word else not 
+ *      match the query with prefix of the word if match then return that word else not
+ *
+ */
+
+
+// const isMatch = (word, query) => {
+//     const indexStart = word.indexOf(query[0]);
+//     if (indexStart >= 0) {
+//         const prefix = word.substring(indexStart, word.length);
+//         return prefix.startsWith(query) ? word : "";
+//     }
+//     return "";
+// };
+
+// const searchFor = (dictionary, query) => {
+//     const result = [];
+//     for (let index = 0; index < dictionary.length; index++) {
+//         const foundWord = isMatch(dictionary[index], query);
+//         if (foundWord !== "") {
+//             result.push(foundWord);
+//         }
+//     }
+//     return result;
+// };
+
+// const contacts = ["gforgeeks", "geeksquiz"];
+// const query = "quiz";
+
+// console.log(searchFor(contacts, query));
+
+// console.log(isMatch("geeksquiz", query))
+
+
+
+
+/**
+ * Find smallest number with given number of digits and sum of digits
+ * 
  * 
  */
 
 
-const isMatch = (word, query) => {
-    const indexStart = word.indexOf(query[0]);
-    if (indexStart >= 0) {
-        const prefix = word.substring(indexStart, word.length);
-        return prefix.startsWith(query) ? word : "";
+function findSmallestNumber(digits, sumOfDigits) {
+    if (sumOfDigits < 0 || sumOfDigits > 9 * digits) {
+        // Invalid sumOfDigits value: It should be within the range 0 to 9*digits.
+        return -1;
     }
-    return "";
-};
 
-const searchFor = (dictionary, query) => {
-    const result = [];
-    for (let index = 0; index < dictionary.length; index++) {
-        const foundWord = isMatch(dictionary[index], query);
-        if (foundWord !== "") {
-            result.push(foundWord);
+    let num = 0;
+
+    for (let i = 0; i < digits; i++) {
+        for (let digit = 0; digit <= 9; digit++) {
+            if (i === 0 && digit === 0) {
+                // Skip leading zeros for the first digit to ensure the number doesn't start with zero.
+                continue;
+            }
+
+            if (sumOfDigits >= digit) {
+                // If the remaining sumOfDigits is greater than or equal to the current digit,
+                // add the current digit to the number and update the sumOfDigits.
+                num = num * 10 + digit;
+                sumOfDigits -= digit;
+                break;
+            }
         }
     }
-    return result;
-};
 
-const contacts = ["gforgeeks", "geeksquiz"];
-const query = "quiz";
+    return num;
+}
 
-console.log(searchFor(contacts, query));
+// Example usage:
+const digits = 3;
+const sumOfDigits = 10;
+const smallestNumber = findSmallestNumber(digits, sumOfDigits);
+console.log(`The smallest number with ${digits} digits and a sum of digits equal to ${sumOfDigits} is: ${smallestNumber}`);
 
-// console.log(isMatch("geeksquiz", query))
