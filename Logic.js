@@ -1891,3 +1891,86 @@ const sumOfDigits = 10;
 const smallestNumber = findSmallestNumber(digits, sumOfDigits);
 console.log(`The smallest number with ${digits} digits and a sum of digits equal to ${sumOfDigits} is: ${smallestNumber}`);
 
+
+/**
+ * Rearrange characters in a string such that no two adjacent are same.
+ * 
+ * first count the characters with frequency
+ * sort the object of characters by key in descending order beacuse in this way we will be able to start from highest FREQUENCY to lowest FREQUENCY
+ * 
+ * create the new empty array to hold the characters
+ * iterate the sorted object of characters
+ *      iterate the the charater untill it frequency is zero 
+ *              add character in result array on each iteration ( for indexing in new array you can use index and reset the index if it is is greater than total string length and move the index by 2 to assign the different positions)
+ * 
+ * at the end again iterate the object of characters 
+ *      if any key have frequency is greater than 0 then return false ( impossible to shuffle ) else return true ( result array )
+ * 
+ * 
+ */
+
+
+/***
+ * 
+ * find maximum sum possible equal sum of three stacks.
+ * 
+ * 
+ * Algorithm for solving this problem: 
+ * Find the sum of all elements of in individual stacks.
+ * If the sum of all three stacks is the same, then this is the maximum sum.
+ * Else remove the top element of the stack having the maximum sum among three of stacks. Repeat step 1 and step 2.
+ * 
+ * 
+ */
+
+
+/***
+ * 
+ * Remove Invalid Parentheses
+ * 
+ * Start with a queue and add the input string to the queue.
+ * Use a hash set to keep track of visited strings to avoid duplicate computations.
+ * While the queue is not empty, dequeue a string from it and check if it is valid.
+ * If the current string is valid, add it to the result list.
+ * If the current string is not valid, generate all possible strings by removing one character (parenthesis) at a time from the original string.
+ * Add these newly generated strings to the queue for further exploration.
+ * Continue the process until the queue is empty.
+ * 
+ */
+
+
+
+/***
+ * 
+ * print all permutations of a string.
+ * 
+ * 
+ * Follow the given steps to solve the problem:
+ * Create a function permute() with parameters as input string, starting index of the string, ending index of the string
+ * Call this function with values input string, 0, size of string – 1
+ * In this function, if the value of  L and R is the same then print the same string
+ * Else run a for loop from L to R and swap the current element in the for loop with the inputString[L]
+ * Then again call this same function by increasing the value of L by 1
+ * After that again swap the previously swapped values to initiate backtracking
+ * 
+ * 
+ * 
+ * The idea is that fix one characters and create a combination of that character with all remaining characters (use recursion)
+ * base case is necessary in recursion so if remaning characters length is 0 then return false
+ * 
+ */
+
+
+/***
+ * find maximum sum possible equal sum of three stacks algorithm
+ * 
+ * 
+ * First, calculate the sum of each stack. Let's call them sum1, sum2, and sum3.
+ * Initialize three pointers, ptr1, ptr2, and ptr3, to the top of each stack, respectively.
+ * While the sums of the three stacks are not equal:
+ * a. Find the stack with the maximum sum among the three (let's say it is stack i).
+ * b. Pop the top element from stack i and update its sum.
+ * If the sums of the three stacks are equal, then the value of the sum is the maximum sum possible.
+ * 
+ * 
+ */
